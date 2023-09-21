@@ -81,21 +81,19 @@ export function toShortForm(question: Question): string {
  * ------------------------------
  * Check the unit tests for more examples of what this looks like!
  */
+
 export function toMarkdown(question: Question): string {
-    // Based on unit tests, there are two cases. either there is a multiple choice or short answer question
-    //first if statement deals with short answer, second if statement seals with multiple choice.
-    if (question.type === "short_answer_question") {
-        return "# " + question.name + "\n" + question.body;
-    } else if (question.type === "multiple_choice_question") {
-        return (
-            "# " +
-            question.name +
-            "\n" +
-            question.body +
-            "\n- " +
-            question.options.join("\n- ")
-        );
+    let formattedStr = " ";
+    const optionsDashs = question.options.join("\n- ");
+
+    if (question.type === "multiple_choice_question") {
+        formattedStr =
+            "# " + question.name + "\n" + question.body + "\n- " + optionsDashs;
+    } else if (question.type === "short_answer_question") {
+        formattedStr = "# " + question.name + "\n" + question.body;
     }
+
+    return formattedStr;
 }
 
 /**
@@ -131,7 +129,7 @@ export function duplicateQuestion(id: number, oldQuestion: Question): Question {
     const duplicate = {
         ...oldQuestion,
         published: false,
-        id,
+        id: id,
         name: "Copy of " + oldQuestion.name
     };
     return duplicate;
