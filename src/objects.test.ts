@@ -20,8 +20,6 @@ import backupQuestionData from "./data/questions.json";
 const { BLANK_QUESTIONS, SIMPLE_QUESTIONS }: Record<string, Question[]> =
     // Typecast the test data that we imported to be a record matching
     //  strings to the question list
-    // Typecast the test data that we imported to be a record matching
-    //  strings to the question list
     testQuestionData as unknown as Record<string, Question[]>;
 
 // We have backup versions of the data to make sure all changes are immutable
