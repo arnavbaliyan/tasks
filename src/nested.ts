@@ -243,20 +243,23 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string
 ): Question[] {
-    const newArray = questions.map(
+    const new_arr = questions.map(
         (question: Question): Question => ({
             ...question,
             options: [...question.options]
         })
     );
-    const targetIndex = newArray.find(
-        (question: Question): boolean => question.id === targetId
+    const targetQuestionIndex = new_arr.find(
+        (question: Question): boolean => targetId === question.id
     );
-    targetIndex !== undefined &&
-        (targetOptionIndex === -1
-            ? targetIndex.options.push(newOption)
-            : (targetIndex.options[targetOptionIndex] = newOption));
-    return newArray;
+    if (targetQuestionIndex !== undefined) {
+        if (targetOptionIndex === -1) {
+            targetQuestionIndex.options.push(newOption);
+        } else {
+            targetQuestionIndex.options[targetOptionIndex] = newOption;
+        }
+    }
+    return new_arr;
 }
 
 /***
