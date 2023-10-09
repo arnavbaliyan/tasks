@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-//import { dhValue, setDhValue } from "./DoubleHalfState";
-// from reading we can use interface to help fix this function
-
 interface doubleHalfProps {
     dhValue: number;
     setDhValue: (value: number) => void;
